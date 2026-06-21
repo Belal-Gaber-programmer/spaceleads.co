@@ -5,7 +5,12 @@ import LiteYouTube from '../components/LiteYouTube';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const portfolioVideos = [
+interface PortfolioVideo {
+  id: string;
+  title: string;
+}
+
+const defaultPortfolioVideos: PortfolioVideo[] = [
   { id: '31hoLdxFtes', title: 'Client Work 1' },
   { id: '4UQ9LLOU6PM', title: 'Client Work 2' },
   { id: 'qc26rDe1uio', title: 'Client Work 3' },
@@ -14,9 +19,12 @@ const portfolioVideos = [
   { id: 'qpNsKYcsP5c', title: 'Client Work 6' },
 ];
 
-// Video items
+interface PortfolioProps {
+  videos?: PortfolioVideo[];
+}
 
-const Portfolio = () => {
+const Portfolio = ({ videos }: PortfolioProps) => {
+  const portfolioVideos = videos ?? defaultPortfolioVideos;
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLDivElement>(null);
   const galleryRef = useRef<HTMLDivElement>(null);

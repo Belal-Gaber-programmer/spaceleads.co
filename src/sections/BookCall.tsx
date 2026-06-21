@@ -1,11 +1,18 @@
 import { useEffect, useRef } from 'react';
+import type { ReactNode } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Calendar } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const BookCall = () => {
+interface BookCallProps {
+  badge?: string;
+  title?: ReactNode;
+  subtitle?: ReactNode;
+}
+
+const BookCall = ({ badge, title, subtitle }: BookCallProps) => {
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -48,13 +55,17 @@ const BookCall = () => {
           <div className="text-center mb-12 md:mb-16">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-500/10 border border-red-500/20 mb-6">
               <Calendar className="w-4 h-4 text-red-500" />
-              <span className="text-sm font-bold text-red-500 uppercase tracking-wider">Free Discovery Call</span>
+              <span className="text-sm font-bold text-red-500 uppercase tracking-wider">{badge ?? 'Free Discovery Call'}</span>
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-black mb-6 tracking-tight">
-              Book a <span className="text-red-500">Call</span>
+              {title ?? (
+                <>
+                  Book a <span className="text-red-500">Call</span>
+                </>
+              )}
             </h2>
             <p className="text-lg md:text-xl text-black/40 max-w-2xl mx-auto font-medium">
-              Schedule a Free Discovery Call. We'll analyze your current content and show you exactly how to turn YouTube into your #1 client acquisition channel.
+              {subtitle ?? "Schedule a Free Discovery Call. We'll analyze your current content and show you exactly how to turn YouTube into your #1 client acquisition channel."}
             </p>
           </div>
 

@@ -3,6 +3,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Quote, Star } from 'lucide-react';
 import LiteYouTube from '../components/LiteYouTube';
+import DepthDeckCarousel from '../components/DepthDeckCarousel';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,7 +18,13 @@ const videoTestimonials = [
   },
 ];
 
-const Testimonial = () => {
+interface TestimonialProps {
+  /** When true, renders the results-screenshots carousel directly beneath the
+   *  testimonials within this same section (no "Our Results" heading). */
+  showResults?: boolean;
+}
+
+const Testimonial = ({ showResults = false }: TestimonialProps) => {
   const sectionRef = useRef<HTMLElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -192,6 +199,14 @@ const Testimonial = () => {
               </div>
             ))}
           </div>
+
+          {/* Results screenshots carousel — flows directly under the testimonials
+              (no "Our Results" heading) when enabled on the personalized page. */}
+          {showResults && (
+            <div className="mt-20 md:mt-28">
+              <DepthDeckCarousel />
+            </div>
+          )}
         </div>
       </div>
 

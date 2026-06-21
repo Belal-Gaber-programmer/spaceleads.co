@@ -1,7 +1,24 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 
-const Navbar = () => {
+interface NavLink {
+  label: string;
+  href: string;
+}
+
+interface NavbarProps {
+  links?: NavLink[];
+}
+
+const defaultLinks: NavLink[] = [
+  { label: 'Why YouTube', href: '#why-youtube' },
+  { label: 'Case Studies', href: '#testimonials' },
+  { label: 'Our Work', href: '#portfolio' },
+  { label: 'Process', href: '#process' },
+  { label: 'FAQ', href: '#faq' },
+];
+
+const Navbar = ({ links }: NavbarProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -14,13 +31,7 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
-    { label: 'Why YouTube', href: '#why-youtube' },
-    { label: 'Case Studies', href: '#testimonials' },
-    { label: 'Our Work', href: '#portfolio' },
-    { label: 'Process', href: '#process' },
-    { label: 'FAQ', href: '#faq' },
-  ];
+  const navLinks = links ?? defaultLinks;
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
