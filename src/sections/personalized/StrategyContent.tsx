@@ -603,14 +603,14 @@ const StrategyContent = () => {
             <div className="grid sm:grid-cols-2 gap-x-10 gap-y-6 mt-10" dir="rtl">
               {vslMeta.map((m) => (
                 <div key={m.label} className="text-right">
-                  <p className="text-[10px] font-black uppercase tracking-[0.2em] text-red-500 mb-2 font-sans">{m.label}</p>
+                  <p className="font-arabic text-lg md:text-xl font-bold text-red-500 mb-2">{m.label}</p>
                   <p className="font-arabic text-sm md:text-base text-white/70 leading-relaxed">{m.value}</p>
                 </div>
               ))}
             </div>
 
             <div className="mt-10 pt-8 border-t border-white/10" dir="rtl">
-              <p className="text-[10px] font-black uppercase tracking-[0.2em] text-red-500 mb-5 text-right font-sans">الهيكلية المقترحة</p>
+              <p className="font-arabic text-lg md:text-xl font-bold text-red-500 mb-5 text-right">الهيكلية المقترحة</p>
               <div className="space-y-3">
                 {vslStructure.map((step, i) => (
                   <div key={i} className="flex items-start gap-4 text-right">
