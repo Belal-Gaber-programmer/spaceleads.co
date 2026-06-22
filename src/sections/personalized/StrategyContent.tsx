@@ -340,7 +340,7 @@ const VideoIdeaCard = ({ idea, isOpen, onToggle }: { idea: VideoIdea; isOpen: bo
           </div>
           <div className="mt-5">
             <p className="font-arabic text-lg md:text-xl font-bold text-red-500 mb-2">أفضل إجراء (CTA)</p>
-            <p className="text-sm md:text-base text-black/60 leading-relaxed font-medium">{idea.cta}</p>
+            <p className="font-arabic text-sm md:text-base text-black/60 leading-relaxed font-medium">{idea.cta}</p>
           </div>
         </div>
       </div>
