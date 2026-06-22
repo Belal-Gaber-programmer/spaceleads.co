@@ -125,7 +125,7 @@ const PersonalizedHero = () => {
       </div>
 
       {/* Content */}
-      <div className="hero-content relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div className="hero-content relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {/* Eyebrow */}
         <div className="hero-reveal mb-10 flex justify-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-500/10 border border-red-500/20">
@@ -136,15 +136,24 @@ const PersonalizedHero = () => {
           </div>
         </div>
 
-        {/* Headline */}
-        <div className="space-y-3 md:space-y-5 mb-8">
-          <h1 className="hero-reveal text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-black leading-[1.08] tracking-tight">
+        {/* Headline — fluid size + nowrap keeps each phrase on a single line (3 lines total) */}
+        <div className="space-y-2 md:space-y-3 mb-8">
+          <h1
+            className="hero-reveal font-black text-black leading-[1.1] tracking-tight whitespace-nowrap"
+            style={{ fontSize: 'clamp(0.85rem, 4vw, 3rem)' }}
+          >
             Turn Your Influence Into an
           </h1>
-          <h1 className="hero-reveal text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-red-500 leading-[1.08] tracking-tight">
+          <h1
+            className="hero-reveal font-black text-red-500 leading-[1.1] tracking-tight whitespace-nowrap"
+            style={{ fontSize: 'clamp(0.85rem, 4vw, 3rem)' }}
+          >
             Evergreen High-Ticket Sales Machine
           </h1>
-          <h1 className="hero-reveal text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-black leading-[1.08] tracking-tight">
+          <h1
+            className="hero-reveal font-black text-black leading-[1.1] tracking-tight whitespace-nowrap"
+            style={{ fontSize: 'clamp(0.85rem, 4vw, 3rem)' }}
+          >
             That Sells While You Sleep
           </h1>
         </div>
