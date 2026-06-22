@@ -338,9 +338,12 @@ const VideoIdeaCard = ({ idea, isOpen, onToggle }: { idea: VideoIdea; isOpen: bo
               </div>
             ))}
           </div>
-          <div className="mt-6 inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-red-500/[0.07] border border-red-500/15">
-            <PlayCircle className="w-4 h-4 text-red-500 flex-shrink-0" />
-            <span className="font-arabic text-sm font-bold text-red-600">{idea.cta}</span>
+          <div className="mt-6">
+            <p className="font-arabic text-lg md:text-xl font-bold text-red-500 mb-2">أفضل إجراء (CTA)</p>
+            <div className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-red-500/[0.07] border border-red-500/15">
+              <PlayCircle className="w-4 h-4 text-red-500 flex-shrink-0" />
+              <span className="font-arabic text-sm font-bold text-red-600">{idea.cta}</span>
+            </div>
           </div>
         </div>
       </div>
