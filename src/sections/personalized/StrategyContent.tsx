@@ -595,7 +595,7 @@ const StrategyContent = () => {
               <PlayCircle className="w-4 h-4 text-red-500" />
               <span className="text-[10px] font-black uppercase tracking-[0.25em] text-white/60">The Flywheel VSL Strategy</span>
             </div>
-            <h3 className="font-arabic text-2xl md:text-4xl font-bold leading-snug mb-3 text-right" dir="rtl">
+            <h3 className="font-arabic text-xl md:text-2xl font-bold leading-snug mb-3 text-right" dir="rtl">
               الدليل الشامل لاحتراف مبيعات التذاكر العالية{' '}
               <span className="text-red-500">(High-Ticket Sales)</span> في ٢٠٢٦
             </h3>
