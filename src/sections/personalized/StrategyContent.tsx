@@ -14,7 +14,7 @@ import {
   CalendarDays,
   Cog,
   ArrowLeft,
-  PlayCircle,
+  RefreshCw,
 } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -285,9 +285,22 @@ const vslStructure: string[] = [
 
 const vslMeta: { label: string; value: string }[] = [
   { label: 'الوعد الأساسي', value: 'كيف تبني دخلاً حقيقياً ومستقلاً من المنزل، بدون رأس مال أو منتج، من خلال إتقان مهارة الإغلاق عالية القيمة.' },
-  { label: 'الهدف الاستراتيجي', value: 'هذا الفيديو هو "الجندي المجهول" الذي يعمل على مدار الساعة؛ فهو يثقّف العميل البارد، ويكسر حواجزه الذهنية، ويثبت سلطتك، ويؤهله تماماً قبل أن يحجز مكالمة المبيعات.' },
+  { label: 'الهدف الاستراتيجي', value: 'هذا الفيديو هو "الجندي المجهول" الذي يعمل على مدار الساعة. وبما أنه دورة كاملة نعطي فيها كل شيء مجاناً، فهو لا يبيع بل يثقّف العميل البارد، ويكسر حواجزه الذهنية، ويثبت سلطتك، ويؤهله تماماً، حتى يصل إلى مكالمة المبيعات وقد بنى الثقة واتخذ قراره فعلياً. هو محور القناة الذي تصبّ فيه بقية الفيديوهات، ومحرّك النمو والتحويل في آنٍ واحد.' },
   { label: 'المشكلة التي يعالجها', value: 'الإرهاق من محاولة بدء مشاريع تجارية معقدة، التشتت بين الفرص الكثيرة، والشعور بالإحباط من عدم القدرة على تحقيق دخل ثابت رغم الجهد المبذول.' },
   { label: 'الآلية الفريدة', value: 'منهجية "إيليت سايلز ماستري" التي تعتمد على سيكولوجية البيع، الاستماع العميق، وحل المشاكل بدلاً من أساليب الضغط التقليدية.' },
+];
+
+const vslFormat =
+  'دورة تدريبية مجانية شاملة بطول ٤٠ إلى ٦٠ دقيقة — لا فيديو ترويجي قصير. نعطي فيها كل شيء عن مبيعات التذاكر العالية دون حجب أي معلومة، لأن الكرم في القيمة هو ما يبني الثقة ويصنع التحويل.';
+
+const flywheelIntro =
+  'الفكرة المحورية أننا نوجّه كل الجمهور إلى هذا الفيديو الواحد بدل تشتيته على عشرات المقاطع، فيتحول إلى نقطة تجميع واحدة للقيمة والتحويل:';
+
+const flywheelMechanism: { label: string; text: string }[] = [
+  { label: 'التغذية من باقي الفيديوهات', text: 'تنتهي كل فيديوهات الاكتشاف (TOF) والثقة (MOF) بدعوة واحدة بسيطة — "جهّزت دورة مجانية كاملة عن الموضوع، شوفوها، الرابط بالوصف" — فتتحوّل القناة بأكملها إلى مسار يصبّ في هذا الفيديو.' },
+  { label: 'وقت المشاهدة يرفع التوزيع', text: 'طول الفيديو وغناه بالقيمة يبقيان المشاهد لدقائق طويلة، فيرتفع إجمالي وقت المشاهدة على القناة، وهو المؤشّر الأهم الذي يدفع خوارزمية يوتيوب إلى عرض القناة على جمهور جديد باستمرار.' },
+  { label: 'تركيز المشاهدات يرفع التحويل', text: 'تجميع المشاهدين المؤهلين على فيديو واحد عالي التحويل يرفع نسبة التحويل بشكل كبير، بدلاً من توزيعهم وإضعاف أثرهم على فيديوهات متفرقة.' },
+  { label: 'القيمة الكاملة تصنع الرغبة', text: 'حين يحصل المشاهد على دورة كاملة مجاناً بهذه الجودة، تتولّد لديه ثقة عميقة ورغبة حقيقية في العمل معكِ — فيأتي حجز المكالمة كخطوة طبيعية ينبع قرارها منه، لا كاستجابة لضغط بيعي.' },
 ];
 
 const funnelingPlatforms: { name: string; followers: string; icon: typeof Instagram; tactics: { when: string; text: string }[] }[] = [
@@ -592,15 +605,25 @@ const StrategyContent = () => {
           <div className="absolute -bottom-24 -left-24 w-80 h-80 bg-red-500/20 blur-[100px] rounded-full" />
           <div className="relative z-10 max-w-4xl mx-auto">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8">
-              <PlayCircle className="w-4 h-4 text-red-500" />
+              <RefreshCw className="w-4 h-4 text-red-500" />
               <span className="text-[10px] font-black uppercase tracking-[0.25em] text-white/60">The Flywheel VSL Strategy</span>
             </div>
-            <h3 className="font-arabic text-xl md:text-2xl font-bold leading-snug mb-3 text-right" dir="rtl">
+
+            {/* Video title */}
+            <p className="font-arabic text-sm font-bold text-white/40 mb-2 text-right" dir="rtl">عنوان الفيديو</p>
+            <h3 className="font-arabic text-xl md:text-2xl font-bold leading-snug mb-8 text-right" dir="rtl">
               الدليل الشامل لاحتراف مبيعات التذاكر العالية{' '}
               <span className="text-red-500">(High-Ticket Sales)</span> في ٢٠٢٦
             </h3>
 
-            <div className="grid sm:grid-cols-2 gap-x-10 gap-y-6 mt-10" dir="rtl">
+            {/* Format — highlighted callout */}
+            <div className="rounded-2xl bg-red-500/10 border border-red-500/20 p-5 md:p-6 mb-10 text-right" dir="rtl">
+              <p className="font-arabic text-lg md:text-xl font-bold text-red-500 mb-2">الصيغة</p>
+              <p className="font-arabic text-sm md:text-base text-white/80 leading-relaxed">{vslFormat}</p>
+            </div>
+
+            {/* Meta grid */}
+            <div className="grid sm:grid-cols-2 gap-x-10 gap-y-6" dir="rtl">
               {vslMeta.map((m) => (
                 <div key={m.label} className="text-right">
                   <p className="font-arabic text-lg md:text-xl font-bold text-red-500 mb-2">{m.label}</p>
@@ -609,6 +632,7 @@ const StrategyContent = () => {
               ))}
             </div>
 
+            {/* Structure */}
             <div className="mt-10 pt-8 border-t border-white/10" dir="rtl">
               <p className="font-arabic text-lg md:text-xl font-bold text-red-500 mb-5 text-right">الهيكلية المقترحة</p>
               <div className="space-y-3">
@@ -623,6 +647,21 @@ const StrategyContent = () => {
               </div>
             </div>
 
+            {/* How the flywheel works */}
+            <div className="mt-10 pt-8 border-t border-white/10" dir="rtl">
+              <p className="font-arabic text-lg md:text-xl font-bold text-red-500 mb-3 text-right">كيف يعمل الـ Flywheel (محرّك النمو والتحويل)</p>
+              <p className="font-arabic text-sm md:text-base text-white/70 leading-relaxed mb-6 text-right">{flywheelIntro}</p>
+              <div className="grid sm:grid-cols-2 gap-4">
+                {flywheelMechanism.map((pt) => (
+                  <div key={pt.label} className="rounded-2xl bg-white/[0.04] border border-white/10 p-5 text-right">
+                    <p className="font-arabic text-base md:text-lg font-bold text-white mb-2">{pt.label}</p>
+                    <p className="font-arabic text-sm text-white/60 leading-relaxed">{pt.text}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* CTA */}
             <div className="mt-10 flex flex-col sm:flex-row sm:items-center sm:justify-end gap-3 text-right" dir="rtl">
               <span className="font-arabic text-sm text-white/50">الإجراء المطلوب:</span>
               <span className="font-arabic text-sm md:text-base font-bold text-white">
