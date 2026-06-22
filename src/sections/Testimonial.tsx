@@ -1,11 +1,6 @@
-import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Quote, Star } from 'lucide-react';
 import LiteYouTube from '../components/LiteYouTube';
 import DepthDeckCarousel from '../components/DepthDeckCarousel';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const videoTestimonials = [
   {
@@ -25,61 +20,9 @@ interface TestimonialProps {
 }
 
 const Testimonial = ({ showResults = false }: TestimonialProps) => {
-  const sectionRef = useRef<HTMLElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Main Card animation
-      gsap.fromTo(
-        '.testimonial-card',
-        { y: 100, opacity: 0, scale: 0.9, rotateX: -10 },
-        {
-          y: 0,
-          opacity: 1,
-          scale: 1,
-          rotateX: 0,
-          duration: 1.5,
-          ease: 'expo.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 80%',
-            toggleActions: 'play none none reverse',
-          },
-        }
-      );
-
-      // Video cards stagger animation
-      const videoCards = containerRef.current?.querySelectorAll('.video-testimonial-card');
-      if (videoCards) {
-        gsap.fromTo(
-          videoCards,
-          { y: 150, opacity: 0, scale: 0.8, rotateY: 20 },
-          {
-            y: 0,
-            opacity: 1,
-            scale: 1,
-            rotateY: 0,
-            duration: 0.5,
-            stagger: 0.1,
-            ease: 'expo.out',
-            scrollTrigger: {
-              trigger: containerRef.current,
-              start: 'top 75%',
-              toggleActions: 'play none none reverse',
-            },
-          }
-        );
-      }
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
     <section
       id="testimonials"
-      ref={sectionRef}
       className="relative py-24 md:py-40 bg-white overflow-hidden"
       style={{ perspective: '1500px' }}
     >
@@ -176,7 +119,7 @@ const Testimonial = ({ showResults = false }: TestimonialProps) => {
           </div>
 
           {/* Video Testimonials Grid */}
-          <div ref={containerRef} className="grid sm:grid-cols-2 gap-8 md:gap-12 mt-20 md:mt-32 max-w-3xl mx-auto">
+          <div className="grid sm:grid-cols-2 gap-8 md:gap-12 mt-20 md:mt-32 max-w-3xl mx-auto">
             {videoTestimonials.map((video) => (
               <div 
                 key={video.id}
@@ -211,8 +154,8 @@ const Testimonial = ({ showResults = false }: TestimonialProps) => {
       </div>
 
       {/* Background Accents */}
-      <div className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-red-500/[0.03] blur-[120px] rounded-full -ml-48" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-red-500/[0.03] blur-[120px] rounded-full -mr-48" />
+      <div className="absolute top-1/2 left-0 hidden md:block -translate-y-1/2 w-96 h-96 bg-red-500/[0.03] blur-[120px] rounded-full -ml-48" />
+      <div className="absolute bottom-0 right-0 hidden md:block w-96 h-96 bg-red-500/[0.03] blur-[120px] rounded-full -mr-48" />
     </section>
   );
 };

@@ -1,7 +1,4 @@
 import { useState } from 'react';
-import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
   Plus,
   Minus,
@@ -16,8 +13,6 @@ import {
   ArrowLeft,
   RefreshCw,
 } from 'lucide-react';
-
-gsap.registerPlugin(ScrollTrigger);
 
 /* ════════════════════════ Shared card style (design system) ════════════════════════ */
 const CARD =
@@ -481,31 +476,10 @@ const VideoIdeasAccordion = () => {
 
 /* ════════════════════════ Main section ════════════════════════ */
 const StrategyContent = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.utils.toArray<HTMLElement>('.strat-reveal').forEach((el) => {
-        gsap.fromTo(
-          el,
-          { y: 50, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.8,
-            ease: 'expo.out',
-            scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none reverse' },
-          }
-        );
-      });
-    }, sectionRef);
-    return () => ctx.revert();
-  }, []);
-
   const scrollToBookCall = () => document.querySelector('#book-call')?.scrollIntoView({ behavior: 'smooth' });
 
   return (
-    <section id="strategy" ref={sectionRef} className="relative py-24 md:py-32 bg-white overflow-hidden">
+    <section id="strategy" className="relative py-24 md:py-32 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <div className="text-center mb-20 strat-reveal">
@@ -601,8 +575,8 @@ const StrategyContent = () => {
 
         {/* 4 — Flywheel VSL (dark highlight card) */}
         <div className="strat-reveal mb-10 relative rounded-[2.5rem] md:rounded-[3rem] bg-black text-white p-8 md:p-14 lg:p-16 overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)]">
-          <div className="absolute -top-24 -right-24 w-80 h-80 bg-red-500/20 blur-[100px] rounded-full" />
-          <div className="absolute -bottom-24 -left-24 w-80 h-80 bg-red-500/20 blur-[100px] rounded-full" />
+          <div className="absolute -top-24 -right-24 hidden md:block w-80 h-80 bg-red-500/20 blur-[100px] rounded-full" />
+          <div className="absolute -bottom-24 -left-24 hidden md:block w-80 h-80 bg-red-500/20 blur-[100px] rounded-full" />
           <div className="relative z-10 max-w-4xl mx-auto">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8">
               <RefreshCw className="w-4 h-4 text-red-500" />
@@ -806,8 +780,8 @@ const StrategyContent = () => {
       </div>
 
       {/* Background accents */}
-      <div className="absolute top-1/4 left-0 w-72 h-72 bg-red-500/5 blur-[120px] rounded-full -ml-36 pointer-events-none" />
-      <div className="absolute bottom-1/4 right-0 w-72 h-72 bg-red-500/5 blur-[120px] rounded-full -mr-36 pointer-events-none" />
+      <div className="absolute top-1/4 left-0 hidden md:block w-72 h-72 bg-red-500/5 blur-[120px] rounded-full -ml-36 pointer-events-none" />
+      <div className="absolute bottom-1/4 right-0 hidden md:block w-72 h-72 bg-red-500/5 blur-[120px] rounded-full -mr-36 pointer-events-none" />
     </section>
   );
 };

@@ -1,46 +1,36 @@
-import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import RazanLanding from './pages/RazanLanding';
-import MainSite from './pages/MainSite';
-import ThankYou from './sections/ThankYou';
+import { lazy, Suspense } from 'react';
 import './App.css';
 
-gsap.registerPlugin(ScrollTrigger);
+const RazanLanding = lazy(() => import('./pages/RazanLanding'));
+const MainSite = lazy(() => import('./pages/MainSite'));
+const ThankYou = lazy(() => import('./sections/ThankYou'));
 
 function App() {
-  const mainRef = useRef<HTMLDivElement>(null);
-
   const pathname = window.location.pathname;
-
-  useEffect(() => {
-    // Refresh ScrollTrigger after all content loads
-    const ctx = gsap.context(() => {
-      ScrollTrigger.refresh();
-    }, mainRef);
-
-    return () => ctx.revert();
-  }, []);
 
   // Routing (lightweight, matches existing pathname-based approach)
   if (pathname.includes('/thank-you')) {
-    return <ThankYou />;
+    return (
+      <Suspense fallback={<div className="min-h-screen bg-[#FAFAFA]" />}>
+        <ThankYou />
+      </Suspense>
+    );
   }
 
   // Original marketing homepage, preserved at /main
   if (pathname.includes('/main')) {
     return (
-      <div ref={mainRef}>
+      <Suspense fallback={<div className="min-h-screen bg-[#FAFAFA]" />}>
         <MainSite />
-      </div>
+      </Suspense>
     );
   }
 
   // Default: the personalized Dream100 prospect page (root of this deployment)
   return (
-    <div ref={mainRef}>
+    <Suspense fallback={<div className="min-h-screen bg-[#FAFAFA]" />}>
       <RazanLanding />
-    </div>
+    </Suspense>
   );
 }
 

@@ -1,9 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React, { useState } from 'react';
 import { Plus, Minus } from 'lucide-react';
-
-gsap.registerPlugin(ScrollTrigger);
 
 interface FAQItem {
   question: string;
@@ -166,66 +162,7 @@ const FAQCard = ({ faq, index, openIndex, onToggle }: FAQCardProps) => {
 };
 
 const FAQ = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-  const headingRef = useRef<HTMLDivElement>(null);
-  const leftColRef = useRef<HTMLDivElement>(null);
-  const rightColRef = useRef<HTMLDivElement>(null);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Heading
-      gsap.fromTo(
-        headingRef.current,
-        { y: 40, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.7,
-          ease: 'expo.out',
-          scrollTrigger: {
-            trigger: headingRef.current,
-            start: 'top 82%',
-            toggleActions: 'play none none reverse',
-          },
-        }
-      );
-      // Left column
-      gsap.fromTo(
-        leftColRef.current,
-        { x: -40, opacity: 0 },
-        {
-          x: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: 'expo.out',
-          scrollTrigger: {
-            trigger: leftColRef.current,
-            start: 'top 88%',
-            toggleActions: 'play none none reverse',
-          },
-        }
-      );
-      // Right column — slight delay
-      gsap.fromTo(
-        rightColRef.current,
-        { x: 40, opacity: 0 },
-        {
-          x: 0,
-          opacity: 1,
-          duration: 0.8,
-          delay: 0.1,
-          ease: 'expo.out',
-          scrollTrigger: {
-            trigger: rightColRef.current,
-            start: 'top 88%',
-            toggleActions: 'play none none reverse',
-          },
-        }
-      );
-    }, sectionRef);
-    return () => ctx.revert();
-  }, []);
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -234,13 +171,12 @@ const FAQ = () => {
   return (
     <section
       id="faq"
-      ref={sectionRef}
       className="relative py-24 md:py-40 bg-white overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Section Header */}
-        <div ref={headingRef} className="text-center mb-16 md:mb-24">
+        <div className="text-center mb-16 md:mb-24">
           <h2 className="text-4xl md:text-5xl lg:text-7xl font-black text-black mb-6 tracking-tighter">
             Frequently Asked <span className="text-red-500">Questions</span>
           </h2>
@@ -252,7 +188,7 @@ const FAQ = () => {
         {/* Two-column FAQ grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
           {/* Left column */}
-          <div ref={leftColRef} className="flex flex-col gap-4 md:gap-5">
+          <div className="flex flex-col gap-4 md:gap-5">
             {leftFaqs.map((faq, i) => (
               <FAQCard
                 key={i}
@@ -264,7 +200,7 @@ const FAQ = () => {
             ))}
           </div>
           {/* Right column — indices continue from where left stopped */}
-          <div ref={rightColRef} className="flex flex-col gap-4 md:gap-5">
+          <div className="flex flex-col gap-4 md:gap-5">
             {rightFaqs.map((faq, i) => (
               <FAQCard
                 key={i + leftFaqs.length}
@@ -279,8 +215,8 @@ const FAQ = () => {
       </div>
 
       {/* Background glows */}
-      <div className="absolute top-1/3 left-0 w-72 h-72 bg-red-500/5 blur-[100px] rounded-full -ml-36 pointer-events-none" />
-      <div className="absolute bottom-1/3 right-0 w-72 h-72 bg-red-500/5 blur-[100px] rounded-full -mr-36 pointer-events-none" />
+      <div className="absolute top-1/3 left-0 hidden md:block w-72 h-72 bg-red-500/5 blur-[100px] rounded-full -ml-36 pointer-events-none" />
+      <div className="absolute bottom-1/3 right-0 hidden md:block w-72 h-72 bg-red-500/5 blur-[100px] rounded-full -mr-36 pointer-events-none" />
     </section>
   );
 };

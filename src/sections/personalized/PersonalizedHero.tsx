@@ -1,10 +1,5 @@
-import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowRight, Play, ScrollText, Youtube, Sparkles } from 'lucide-react';
 import LiteYouTube from '../../components/LiteYouTube';
-
-gsap.registerPlugin(ScrollTrigger);
 
 /* ═══════════════════════════════════════════════════════════════════════
    HERO VIDEO — SWAP IN RAZAN'S WALKTHROUGH HERE
@@ -61,43 +56,12 @@ const HeroVideo = () => {
 };
 
 const PersonalizedHero = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        '.hero-reveal',
-        { y: 40, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1,
-          stagger: 0.12,
-          ease: 'expo.out',
-        }
-      );
-
-      ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: 'top top',
-        end: 'bottom top',
-        scrub: 1,
-        onUpdate: (self) => {
-          gsap.set('.hero-content', { y: -60 * self.progress });
-        },
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
   const scrollTo = (id: string) => {
     document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
     <section
-      ref={sectionRef}
       className="relative min-h-screen flex items-start justify-center overflow-hidden pt-[160px] pb-16"
     >
       <style>{`

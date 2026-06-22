@@ -1,10 +1,17 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { ReactNode } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Calendar } from 'lucide-react';
 
-gsap.registerPlugin(ScrollTrigger);
+const CALENDLY_SCRIPT_ID = 'calendly-widget-script';
+const CALENDLY_URL = 'https://calendly.com/spaceleads/freeconsultation?hide_gdpr_banner=1';
+
+declare global {
+  interface Window {
+    Calendly?: {
+      initInlineWidget: (options: { url: string; parentElement: HTMLElement }) => void;
+    };
+  }
+}
 
 interface BookCallProps {
   badge?: string;
@@ -15,17 +22,65 @@ interface BookCallProps {
 const BookCall = ({ badge, title, subtitle }: BookCallProps) => {
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const widgetRef = useRef<HTMLDivElement>(null);
+  const [shouldLoadCalendly, setShouldLoadCalendly] = useState(false);
+  const [isCalendlyReady, setIsCalendlyReady] = useState(false);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Animations temporarily disabled
-    }, sectionRef);
+    const section = sectionRef.current;
 
-    // Load Calendly script
-    const script = document.createElement('script');
-    script.src = 'https://assets.calendly.com/assets/external/widget.js';
-    script.async = true;
-    document.body.appendChild(script);
+    if (!section || !('IntersectionObserver' in window)) {
+      const timer = window.setTimeout(() => setShouldLoadCalendly(true), 0);
+      return () => window.clearTimeout(timer);
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoadCalendly(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '900px 0px' }
+    );
+
+    observer.observe(section);
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!shouldLoadCalendly) {
+      return;
+    }
+
+    const initCalendly = () => {
+      if (!widgetRef.current || !window.Calendly || widgetRef.current.childElementCount > 0) {
+        return;
+      }
+
+      window.Calendly.initInlineWidget({
+        url: CALENDLY_URL,
+        parentElement: widgetRef.current,
+      });
+      setIsCalendlyReady(true);
+    };
+
+    let script = document.getElementById(CALENDLY_SCRIPT_ID) as HTMLScriptElement | null;
+
+    if (!script) {
+      script = document.createElement('script');
+      script.id = CALENDLY_SCRIPT_ID;
+      script.src = 'https://assets.calendly.com/assets/external/widget.js';
+      script.async = true;
+      document.body.appendChild(script);
+    }
+
+    if (window.Calendly) {
+      initCalendly();
+    } else {
+      script.addEventListener('load', initCalendly, { once: true });
+    }
 
     // Add event listener for Calendly events
     const handleCalendlyEvent = (e: MessageEvent) => {
@@ -37,11 +92,10 @@ const BookCall = ({ badge, title, subtitle }: BookCallProps) => {
     window.addEventListener('message', handleCalendlyEvent);
 
     return () => {
-      ctx.revert();
-      document.body.removeChild(script);
+      script?.removeEventListener('load', initCalendly);
       window.removeEventListener('message', handleCalendlyEvent);
     };
-  }, []);
+  }, [shouldLoadCalendly]);
 
   return (
     <section
@@ -71,18 +125,24 @@ const BookCall = ({ badge, title, subtitle }: BookCallProps) => {
 
           {/* Calendly Embed Container */}
           <div className="relative rounded-3xl overflow-hidden bg-white shadow-2xl border border-black/5">
-            <div 
-              className="calendly-inline-widget"
-              data-url="https://calendly.com/spaceleads/freeconsultation?hide_gdpr_banner=1"
-              style={{minWidth: '320px', height: '700px'}}
-            />
+            <div className="relative h-[620px] md:h-[700px] min-w-[320px]">
+              <div ref={widgetRef} className="absolute inset-0 h-full w-full" />
+              {!isCalendlyReady && (
+                <div
+                  className="absolute inset-0 flex items-center justify-center bg-white"
+                  aria-hidden="true"
+                >
+                  <div className="h-12 w-12 rounded-full border-4 border-black/10 border-t-red-500 animate-spin" />
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
 
       {/* Background Accents */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-red-500/5 blur-[150px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-red-500/5 blur-[150px] rounded-full pointer-events-none" />
+      <div className="absolute top-0 left-1/4 hidden md:block w-96 h-96 bg-red-500/5 blur-[150px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 hidden md:block w-96 h-96 bg-red-500/5 blur-[150px] rounded-full pointer-events-none" />
     </section>
   );
 };

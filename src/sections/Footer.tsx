@@ -1,9 +1,4 @@
-import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Youtube, Instagram, Twitter, Linkedin, ArrowUpRight } from 'lucide-react';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const socialLinks = [
   { icon: Linkedin, label: 'LinkedIn', href: 'https://www.linkedin.com/in/belalgaberrr' },
@@ -13,21 +8,10 @@ const socialLinks = [
 ];
 
 const Footer = () => {
-  const footerRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Animations reserved
-    }, footerRef);
-    return () => ctx.revert();
-  }, []);
-
-
-
   return (
-    <footer ref={footerRef} className="relative bg-white pt-24 pb-12 border-t border-black/[0.03] overflow-hidden">
+    <footer className="relative bg-white pt-24 pb-12 border-t border-black/[0.03] overflow-hidden">
       {/* Background Glow */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[300px] bg-red-500/5 blur-[120px] rounded-full" />
+      <div className="absolute bottom-0 left-1/2 hidden md:block -translate-x-1/2 w-full h-[300px] bg-red-500/5 blur-[120px] rounded-full" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 mb-24">
