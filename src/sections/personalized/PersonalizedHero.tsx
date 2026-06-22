@@ -162,8 +162,7 @@ const PersonalizedHero = () => {
         <p className="hero-reveal text-lg md:text-xl text-black/60 max-w-3xl mx-auto leading-relaxed font-medium mb-4">
           {PROSPECT_FIRST_NAME}, you've already built the authority and the audience. Here's the exact
           YouTube system that turns that attention into qualified, pre-sold calls for{' '}
-          <span className="text-black font-bold">Elite Sales Mastery</span> — and fills the room for{' '}
-          <span className="text-black font-bold">مؤتمر الرؤية</span>.
+          <span className="text-black font-bold">Elite Sales Mastery</span>.
         </p>
 
         {/* Arabic personal line */}
