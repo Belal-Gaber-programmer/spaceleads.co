@@ -2,7 +2,6 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowRight, ScrollText, Youtube } from 'lucide-react';
-import LiteYouTube from '../components/LiteYouTube';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -129,10 +128,14 @@ const Hero = () => {
 
         {/* Video Section */}
         <div className="overflow-hidden mb-12 max-w-4xl mx-auto px-4">
-          <div className="aspect-video w-full rounded-2xl overflow-hidden shadow-2xl border border-black/5 bg-gray-100">
-            <LiteYouTube 
-              videoId="X0DJ9p6q2Gk" 
-              title="YouTube video player" 
+          <div className="relative aspect-video w-full rounded-2xl overflow-hidden shadow-2xl border border-black/5 bg-gray-100">
+            <iframe
+              src="https://www.loom.com/embed/532c55eeb2874ba98fb9f620f8edad7d"
+              title="Spaceleads overview video"
+              frameBorder="0"
+              allow="fullscreen; picture-in-picture"
+              className="absolute inset-0 h-full w-full"
+              allowFullScreen
             />
           </div>
         </div>
