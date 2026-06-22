@@ -333,7 +333,7 @@ const VideoIdeaCard = ({ idea, isOpen, onToggle }: { idea: VideoIdea; isOpen: bo
               { label: 'الصورة المصغرة', value: idea.thumbnail },
             ].map((row) => (
               <div key={row.label}>
-                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-black/40 mb-1.5">{row.label}</p>
+                <p className="font-arabic text-sm md:text-base font-bold text-red-500 mb-1.5">{row.label}</p>
                 <p className="text-sm md:text-base text-black/60 leading-relaxed font-medium">{row.value}</p>
               </div>
             ))}
