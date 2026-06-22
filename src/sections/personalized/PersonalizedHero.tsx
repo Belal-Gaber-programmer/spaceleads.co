@@ -15,7 +15,7 @@ gsap.registerPlugin(ScrollTrigger);
    Leave both null to show the branded placeholder.
    ═══════════════════════════════════════════════════════════════════════ */
 const HERO_YOUTUBE_ID: string | null = null;
-const HERO_LOOM_URL: string | null = null;
+const HERO_LOOM_URL: string | null = 'https://www.loom.com/embed/532c55eeb2874ba98fb9f620f8edad7d';
 
 const PROSPECT_NAME = 'Razan Cheaito';
 const PROSPECT_FIRST_NAME = 'Razan';
