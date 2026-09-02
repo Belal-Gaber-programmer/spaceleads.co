@@ -97,16 +97,6 @@ const Footer = () => {
 
         </div>
 
-        {/* Book Online CTA */}
-        <div className="flex justify-center mb-16">
-          <a
-            href="/book-online"
-            className="inline-flex items-center gap-2 bg-black text-white px-8 py-4 rounded-full text-[10px] font-black uppercase tracking-[0.2em] hover:bg-red-500 transition-colors duration-300 shadow-xl"
-          >
-            Book Online
-          </a>
-        </div>
-
         {/* Bottom Bar */}
         <div className="pt-12 border-t border-black/[0.03] flex items-center justify-center">
           <p className="text-[10px] font-black uppercase tracking-[0.2em] text-black/20">

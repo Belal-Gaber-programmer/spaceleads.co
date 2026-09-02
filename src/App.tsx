@@ -13,7 +13,6 @@ import FinalCTA from './sections/FinalCTA';
 import BookCall from './sections/BookCall';
 import Footer from './sections/Footer';
 import ThankYou from './sections/ThankYou';
-import BookOnline from './sections/BookOnline';
 import ScrollToTop from './components/ScrollToTop';
 import './App.css';
 
@@ -26,11 +25,6 @@ function App() {
   const pathname = window.location.pathname;
   if (pathname.includes('/spaceleads/thank-you') || pathname.endsWith('/thank-you')) {
     return <ThankYou />;
-  }
-
-  // Check for the book-online page (accounting for base path /spaceleads/)
-  if (pathname.includes('/spaceleads/book-online') || pathname.endsWith('/book-online')) {
-    return <BookOnline />;
   }
 
   useEffect(() => {
