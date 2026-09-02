@@ -21,15 +21,25 @@ const BookOnline = () => {
       );
     }, containerRef);
 
-    // Load GHL's iframe-resize script for the booking widget
+    // Load Calendly script
     const script = document.createElement('script');
-    script.src = 'https://link.msgsndr.com/js/form_embed.js';
+    script.src = 'https://assets.calendly.com/assets/external/widget.js';
     script.async = true;
     document.body.appendChild(script);
+
+    // Add event listener for Calendly events
+    const handleCalendlyEvent = (e: MessageEvent) => {
+      if (e.data.event && e.data.event === 'calendly.event_scheduled') {
+        window.location.href = 'https://spaceleads.co/thank-you';
+      }
+    };
+
+    window.addEventListener('message', handleCalendlyEvent);
 
     return () => {
       ctx.revert();
       document.body.removeChild(script);
+      window.removeEventListener('message', handleCalendlyEvent);
     };
   }, []);
 
@@ -53,12 +63,10 @@ const BookOnline = () => {
 
       {/* Booking Embed */}
       <div className="bo-item w-full max-w-3xl rounded-3xl overflow-hidden bg-white shadow-2xl border border-black/[0.04]">
-        <iframe
-          src="https://api.leadconnectorhq.com/widget/booking/LpGGCB0PmWHRumhoB2sk"
-          style={{ width: '100%', border: 'none', overflow: 'hidden' }}
-          scrolling="no"
-          id="LpGGCB0PmWHRumhoB2sk_1787517513434"
-          title="Book a discovery call"
+        <div
+          className="calendly-inline-widget"
+          data-url="https://calendly.com/spaceleads/freeconsultation?hide_gdpr_banner=1"
+          style={{ minWidth: '320px', height: '700px' }}
         />
       </div>
 
