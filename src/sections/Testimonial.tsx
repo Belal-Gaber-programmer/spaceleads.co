@@ -8,12 +8,16 @@ gsap.registerPlugin(ScrollTrigger);
 
 const videoTestimonials = [
   {
-    id: 'XK1ShDotStw',
+    id: 'xhoE4nUVRDA',
     title: 'Client Success Story 1',
   },
   {
-    id: 'VoGaznOPlXU',
+    id: 'XK1ShDotStw',
     title: 'Client Success Story 2',
+  },
+  {
+    id: 'VoGaznOPlXU',
+    title: 'Client Success Story 3',
   },
 ];
 
@@ -169,7 +173,7 @@ const Testimonial = () => {
           </div>
 
           {/* Video Testimonials Grid */}
-          <div ref={containerRef} className="grid sm:grid-cols-2 gap-8 md:gap-12 mt-20 md:mt-32 max-w-3xl mx-auto">
+          <div ref={containerRef} className="grid sm:grid-cols-3 gap-6 md:gap-10 mt-20 md:mt-32 max-w-5xl mx-auto">
             {videoTestimonials.map((video) => (
               <div 
                 key={video.id}
