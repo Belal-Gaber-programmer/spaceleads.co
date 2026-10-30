@@ -83,15 +83,15 @@ const Hero = () => {
 
         {/* Main Headline - centered with dropping animation */}
         <div className="hero-headline-wrap space-y-4 md:space-y-6 mb-10">
-          <h1 className="drop-text drop-text-2 space-y-3 md:space-y-4 text-black text-balance">
-            <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-[1.1] tracking-tight">
+          <h1 className="drop-text drop-text-2 space-y-3 md:space-y-4 text-black text-balance xl:-mx-24">
+            <span className="block text-2xl sm:text-3xl lg:text-4xl xl:text-[44px] font-black leading-[1.1] tracking-tight">
               We Will Build a <span className="text-red-500"><span className="whitespace-nowrap">Done-For-You</span> YouTube Channel</span>
             </span>
-            <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-[1.1] tracking-tight">
-              That Turns Your Knowledge Into Clients.
+            <span className="block text-2xl sm:text-3xl lg:text-4xl xl:text-[44px] font-black leading-[1.1] tracking-tight">
+              That Turns Your Knowledge Into High-Ticket Clients.
             </span>
-            <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-[1.1] tracking-tight">
-              All You Do Is Film <span className="whitespace-nowrap">3–4 Hours</span> a Month.
+            <span className="block text-2xl sm:text-3xl lg:text-4xl xl:text-[44px] font-black leading-[1.1] tracking-tight">
+              All You Do Is Film <span className="whitespace-nowrap text-red-500">3–4 Hours</span> a Month.
             </span>
           </h1>
         </div>
