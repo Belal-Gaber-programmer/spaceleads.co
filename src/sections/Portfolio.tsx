@@ -6,10 +6,10 @@ import LiteYouTube from '../components/LiteYouTube';
 gsap.registerPlugin(ScrollTrigger);
 
 const portfolioVideos = [
-  { id: '31hoLdxFtes', title: 'Client Work 1' },
+  { id: '3ISor2LaPnc', title: 'Client Work 1' },
   { id: '4UQ9LLOU6PM', title: 'Client Work 2' },
   { id: 'qc26rDe1uio', title: 'Client Work 3' },
-  { id: '3ISor2LaPnc', title: 'Client Work 4' },
+  { id: '31hoLdxFtes', title: 'Client Work 4' },
   { id: 'Yev5ouUo6PU', title: 'Client Work 5' },
   { id: 'qpNsKYcsP5c', title: 'Client Work 6' },
 ];
