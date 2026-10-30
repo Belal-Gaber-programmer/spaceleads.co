@@ -1,11 +1,12 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Compass, Camera, Sparkles, Share2 } from 'lucide-react';
+import type { ReactNode } from 'react';
+import { Compass, Camera, Sparkles, Share2, Target } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const steps = [
+const steps: { number: string; icon: typeof Compass; title: string; description: ReactNode }[] = [
   {
     number: '01',
     icon: Compass,
@@ -33,6 +34,26 @@ const steps = [
     title: 'Distribution',
     description:
       "Uploading is just the start. We help you push every video across your other channels — turning long-form content into short-form clips, Instagram stories, Emails, etc., nurturing your existing pipeline, shortening your sales cycle, and converting a higher percentage of your audience into paying clients.",
+  },
+  {
+    number: '05',
+    icon: Target,
+    title: 'Lead Tracking & Attribution',
+    description: (
+      <>
+        We track every result back to the video that produced it using our own attribution software,{' '}
+        <a
+          href="https://vidworth.co"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-red-500 font-bold underline decoration-red-500/30 underline-offset-4 hover:decoration-red-500 transition-colors"
+        >
+          vidworth.co
+        </a>
+        . See where every lead came from, how many clicked, booked a call, and bought, plus their full journey from first
+        view to closed deal. So you know exactly which videos make you money, and we double down on what works.
+      </>
+    ),
   },
 ];
 
@@ -129,7 +150,7 @@ const Process = () => {
             Our <span className="text-red-500">Done-For-You</span> Process
           </h2>
           <p className="text-lg md:text-xl text-black/40 max-w-3xl mx-auto font-medium leading-relaxed">
-            We've distilled years of YouTube growth into a seamless 4-step engine that takes you from obscurity to market dominance.
+            We've distilled years of YouTube growth into a seamless 5-step engine that takes you from obscurity to market dominance.
           </p>
         </div>
 
