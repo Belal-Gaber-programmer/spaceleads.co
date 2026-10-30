@@ -83,39 +83,17 @@ const Hero = () => {
 
         {/* Main Headline - centered with dropping animation */}
         <div className="hero-headline-wrap space-y-4 md:space-y-6 mb-10">
-          <div className="overflow-hidden">
-            <h1 className="drop-text drop-text-2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-black leading-[1.1] tracking-tight">
-              We'll Build a Done-For-You
-            </h1>
-          </div>
-          
-          {/* Highlighted text - YouTube Client Acquisition System in red */}
-          <div className="overflow-visible py-2">
-            <div className="drop-text drop-text-3 relative inline-block">
-              <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-red-500 leading-none tracking-tight">
-                YouTube Client Acquisition System
-              </span>
-            </div>
-          </div>
-          
-          <div className="overflow-visible">
-            <h1 className="drop-text drop-text-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-black leading-[1.1] tracking-tight">
-              That Signs 3-5 High-Ticket Clients
-            </h1>
-          </div>
-          
-          <div className="overflow-visible py-3">
-            <h1 className="drop-text drop-text-5 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-black leading-[1.1] tracking-tight">
-              in 90 Days
-            </h1>
-          </div>
-
-          {/* Or You Don't Pay with hand-drawn underline */}
-          <div className="overflow-visible py-4">
-            <h1 className="drop-text drop-text-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-black leading-[1.1] tracking-tight">
-              (Or You Don't Pay)
-            </h1>
-          </div>
+          <h1 className="drop-text drop-text-2 space-y-3 md:space-y-4 text-black text-balance">
+            <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-[1.1] tracking-tight">
+              We Will Build a <span className="text-red-500"><span className="whitespace-nowrap">Done-For-You</span> YouTube Channel</span>
+            </span>
+            <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-[1.1] tracking-tight">
+              That Turns Your Knowledge Into Clients.
+            </span>
+            <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-[1.1] tracking-tight">
+              All You Do Is Film <span className="whitespace-nowrap">3–4 Hours</span> a Month.
+            </span>
+          </h1>
         </div>
 
         {/* Subheadline */}
