@@ -9,7 +9,7 @@ const socials = [
 
 const stats = [
   { value: '8', label: 'high-ticket deals closed in the first month' },
-  { value: '~$18K', label: 'in closed deals, first month' },
+  { value: '~$20K', label: 'in closed deals, first month' },
   { value: '100', label: 'warm booked calls from YouTube alone' },
   { value: '0 → 2K+', label: 'subscribers in the first month' },
 ];
