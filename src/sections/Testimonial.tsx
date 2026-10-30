@@ -3,6 +3,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Quote, Star } from 'lucide-react';
 import LiteYouTube from '../components/LiteYouTube';
+import RazanCaseStudy from './RazanCaseStudy';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -92,6 +93,11 @@ const Testimonial = () => {
         </div>
 
         <div className="w-full">
+          {/* Featured Case Study - Razan */}
+          <div className="mb-8">
+            <RazanCaseStudy />
+          </div>
+
           <div className="flex flex-col lg:flex-row gap-8">
             {/* Main Text Testimonial - Idriis Abu Haythami (Combined - Tall Card) */}
             <div className="testimonial-card relative bg-[#FAFAFA] rounded-[2.5rem] p-8 md:p-10 xl:p-12 shadow-2xl border border-black/[0.03] overflow-hidden lg:w-1/2">
