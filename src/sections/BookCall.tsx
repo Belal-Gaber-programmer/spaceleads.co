@@ -63,7 +63,7 @@ const BookCall = () => {
           <div className="relative rounded-3xl overflow-hidden bg-white shadow-2xl border border-black/5">
             <div 
               className="calendly-inline-widget"
-              data-url="https://calendly.com/spaceleads/freeconsultation?hide_gdpr_banner=1"
+              data-url="https://calendly.com/spaceleads/strategycall?hide_gdpr_banner=1"
               style={{minWidth: '320px', height: '700px'}}
             />
           </div>
